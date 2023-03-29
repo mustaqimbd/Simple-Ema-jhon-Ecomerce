@@ -3,21 +3,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 const Cart = ({ cart }) => {
-    console.log(cart)
+    // console.log(cart)
     let total = 0;
     let totalShipping = 0;
+    let quantity = 0;
     for (const product of cart) {
         total += product.price;
         totalShipping += product.shipping;
+        quantity += product.quantity;
     }
     const tax = (total * 7) / 100;
     const grandTotal = total + totalShipping + tax;
-    console.log(total, 'shipping', totalShipping)
     return (
         <>
             <h4 className='text-center text-2xl font-bold'>Order Summary</h4>
             <div className='flex flex-col gap-5 mt-5 font-medium'>
                 <p>Selected items : {cart.length}</p>
+                <p>Quantity: {quantity}</p>
                 <p>Total Price: ${total}</p>
                 <p>Total Shipping Charge: ${totalShipping}</p>
                 <p>Tax: ${tax.toFixed(2)}</p>
